@@ -109,6 +109,8 @@ void BTconnectionCheck(){
     bt_connected = false;
   } 
 
+  
+
   if (bt_connected == true){
     // bluetoothConnected();
     // Serial.println("2,5,0,BTConn,#");

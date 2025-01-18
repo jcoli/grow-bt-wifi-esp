@@ -16,6 +16,7 @@ espwroom32 - Grown
 #include "mqtt_control.h"
 #include "receive_bt.h"
 #include "service_01_bt.h"
+#include "comm_bt.h"
 
 void on_receive_master(String line_in);
 void update_variables(String line);
@@ -140,6 +141,7 @@ extern HASwitch switch_relay2_ha;
 extern HASwitch switch_relay3_ha;
 extern HASwitch switch_relay4_ha;
 
+extern BluetoothSerial BTSERIAL;
 
 void on_bit_alive_bt(){
     if (!bt_alive){
@@ -197,6 +199,11 @@ void on_receive_master(String line_in){
           broker_ip.fromString(ip_broker.c_str());
           wifi_begin(wifi_ssid, wifi_pwd);
           break;  
+        case 9:
+          Serial.println("BT DISCONNECTED");
+          BT_SERIAL.disconnect();
+          bt_begin();
+          break;    
     }    
 }
 
